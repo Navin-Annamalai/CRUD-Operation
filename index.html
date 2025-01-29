@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        JavaScript CRUD Example Tutorial
+    </title>
+
+    <style>
+        .income-Tracker {
+            border-style: solid;
+            padding: 10px;
+            margin: auto;
+            width: 50%;     
+        }
+
+        .Expense-Tracker {
+            border-style: solid;
+            padding: 10px;
+            margin: auto;
+            width: 50%;
+        }
+
+        body>table {
+            width: 80%;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table.list {
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #727272;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even),
+        table.list thead>tr {
+            background-color: #dddddd;
+        }
+
+        input[type=text],
+        input[type=number] {
+            width: 100%;
+            padding: 8px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+
+        .button1 {
+            display: block;
+            width: 10%;
+            background-color: rgb(18, 173, 65);
+            color: white;
+            margin: 20px auto;
+            padding: 10px 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        a {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #0000ee;
+            margin-right: 4px;
+        }
+
+        label.validation-error {
+            color: red;
+            margin-left: 5px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        <center>Expense Tracker</center>
+    </h1>
+    <br>
+    <div class="Expense-Tracker">
+        <form onsubmit="return event.preventDefault(); onSubmit();" autocomplete="off">
+
+            <div>
+                <label class="validation-error hide" id="fullNameValidationError">*This field is
+                    required.</label><br><br>
+                <label>Add your Expense*</label>
+                <input type="number" name="amount" id="amount">
+            </div><br>
+            <div>
+                <label>Why you Spend for?*</label>
+                <input type="text" name="description" id="description">
+            </div> <br>
+    </div>
+    <br>
+    <div class="form-action-buttons">
+        <button class="button1" type=submit onclick="onSubmit()">Submit</button>
+    </div>
+    </form>
+    <div class="expense-table">
+        <table class="list" id="expenselist">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="crud.js"></script>
+</body>
+
+</html>
