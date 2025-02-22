@@ -3,23 +3,17 @@
 
 <head>
     <title>
-        JavaScript CRUD Example Tutorial
+      Income & Expense Tracker - CRUD
     </title>
 
     <style>
-        .income-Tracker {
-            border-style: solid;
-            padding: 10px;
-            margin: auto;
-            width: 50%;     
-        }
-
         .Expense-Tracker {
             border-style: solid;
             padding: 10px;
             margin: auto;
             width: 50%;
         }
+        .expense-H1
 
         body>table {
             width: 80%;
@@ -57,18 +51,32 @@
         }
 
 
-
         .button1 {
-            display: block;
+            /* Makes it a block element */
             width: 10%;
-            background-color: rgb(18, 173, 65);
+            background-color: green;
             color: white;
-            margin: 20px auto;
-            padding: 10px 10px;
+            margin: 30px auto;
+            /* Centers horizontally */
+            display: block;
+            padding: 10px;
             border-radius: 5px;
-            border: none;
             cursor: pointer;
             text-align: center;
+
+            /* Ensures text is centered */
+        }
+
+        .button2 {
+            width: 150px;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            /* Centers horizontally */
+            padding: 20px ;
+            border-radius: 5px;
+            cursor: pointer;
+            justify-content: center;
+            /* Ensures text is centered */
         }
 
         a {
@@ -86,18 +94,106 @@
         .hide {
             display: none;
         }
+
+        .front {
+            text-align: center;
+            background-color: #b5ede1;
+            padding: 50px;
+            margin: 100px;
+            border: 20px solid #000000;
+            border-radius: 10px;
+        }
+        .font {
+            font-size:x-large;
+            font-weight: bolder;
+        }
+
+        input[type=radio] {
+    height: 2em;
+    width: 100px;
+    background-color: #8ef6df;
+}
+.margin{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.Income-H1{
+    margin-top: 150px;
+}
+.expense-H1 {
+    margin-top: 550px;
+}
+.expense-table{
+    margin-bottom: 550px;
+}
+.body {
+    background-color: #fdfdfd;
+}
+        
     </style>
 </head>
 
-<body>
+<body class="body">
+    <h1 id="margin" class="margin">Welcome Navin, Good Day!!</h1>
+    <input type="radio" action><a class = "font" href="#expense-H1">Go to your Expense Tracker</a>   
+     <input type="radio"><a class = "font" href="#Income-H1">Go to your Income Tracker</a>
+    <div class="front">
+        <h1>Overall Status of your Tracker</h1>
+        
+        <h1 Name="Netincome">Total Income : <span id="totalincome">0</span></h1>
+        <h1>Total Expense: <span id="totalspent">0</span></h1>
+        <h1>Current Balance: <span id="balance">0</span></h1> 
 
-    <h1>
-        <center>Expense Tracker</center>
+        <div>
+            <button class="button2" type=submit onclick="resetAll()">Reset</button>
+        </div>
+    </div>
+
+    <h1 class="Income-H1" id="Income-H1">
+        <center>Income Tracker</center>
+        <a class = "font" href="#margin">Home</a>
+        <a class = "font" href="#expense-H1">Expense Section</a>
     </h1>
-    <br>
+    <div class="Expense-Tracker">
+    <form onsubmit="return event.preventDefault(); onSubmitincome();" autocomplete="off">
+        <div>
+            <label class="validation-error hide1" id="fullNameValidationError1">*This field is
+                required.</label><br><br>
+            <label>Add your Expense*</label>
+            <input type="number" name="incomeamount" id="incomeamount">
+        </div><br>
+        <div>
+            <label>Why you Spend for?*</label>
+            <input type="text" name="description1" id="description1">
+        </div> <br>
+        </div>
+        <br>
+        <div class="form-action-buttons1">
+            <button class="button1" type=submit onclick="onSubmitincome()">Submit</button>
+        </div>
+    </form>
+    <div class="income-table">
+        <table class="list" id="incomelist">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+   
+    <h1 class = "expense-H1" id = "expense-H1">
+        <center>Expense Tracker</center>
+        <a class = "font" href="#margin">Home</a>
+        <a class = "font" href="#Income-H1">Income Section</a>
+    </h1>
     <div class="Expense-Tracker">
         <form onsubmit="return event.preventDefault(); onSubmit();" autocomplete="off">
-
             <div>
                 <label class="validation-error hide" id="fullNameValidationError">*This field is
                     required.</label><br><br>
@@ -128,7 +224,8 @@
             </tbody>
         </table>
     </div>
-    <script src="crud.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
+
