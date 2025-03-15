@@ -1,231 +1,57 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>
-      Income & Expense Tracker - CRUD
-    </title>
-
-    <style>
-        .Expense-Tracker {
-            border-style: solid;
-            padding: 10px;
-            margin: auto;
-            width: 50%;
-        }
-        .expense-H1
-
-        body>table {
-            width: 80%;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        table.list {
-            width: 100%;
-        }
-
-        td,
-        th {
-            border: 1px solid #727272;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even),
-        table.list thead>tr {
-            background-color: #dddddd;
-        }
-
-        input[type=text],
-        input[type=number] {
-            width: 100%;
-            padding: 8px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-
-        .button1 {
-            /* Makes it a block element */
-            width: 10%;
-            background-color: green;
-            color: white;
-            margin: 30px auto;
-            /* Centers horizontally */
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-
-            /* Ensures text is centered */
-        }
-
-        .button2 {
-            width: 150px;
-            background-color: rgb(255, 255, 255);
-            color: rgb(0, 0, 0);
-            /* Centers horizontally */
-            padding: 20px ;
-            border-radius: 5px;
-            cursor: pointer;
-            justify-content: center;
-            /* Ensures text is centered */
-        }
-
-        a {
-            cursor: pointer;
-            text-decoration: underline;
-            color: #0000ee;
-            margin-right: 4px;
-        }
-
-        label.validation-error {
-            color: red;
-            margin-left: 5px;
-        }
-
-        .hide {
-            display: none;
-        }
-
-        .front {
-            text-align: center;
-            background-color: #b5ede1;
-            padding: 50px;
-            margin: 100px;
-            border: 20px solid #000000;
-            border-radius: 10px;
-        }
-        .font {
-            font-size:x-large;
-            font-weight: bolder;
-        }
-
-        input[type=radio] {
-    height: 2em;
-    width: 100px;
-    background-color: #8ef6df;
-}
-.margin{
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-.Income-H1{
-    margin-top: 150px;
-}
-.expense-H1 {
-    margin-top: 550px;
-}
-.expense-table{
-    margin-bottom: 550px;
-}
-.body {
-    background-color: #fdfdfd;
-}
-        
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded shadow-lg">
+        <h2 class="text-xl font-bold mb-4">Expense Tracker</h2>
 
-<body class="body">
-    <h1 id="margin" class="margin">Welcome Navin, Good Day!!</h1>
-    <input type="radio" action><a class = "font" href="#expense-H1">Go to your Expense Tracker</a>   
-     <input type="radio"><a class = "font" href="#Income-H1">Go to your Income Tracker</a>
-    <div class="front">
-        <h1>Overall Status of your Tracker</h1>
-        
-        <h1 Name="Netincome">Total Income : <span id="totalincome">0</span></h1>
-        <h1>Total Expense: <span id="totalspent">0</span></h1>
-        <h1>Current Balance: <span id="balance">0</span></h1> 
+        <label class="block mb-2">Description:</label>
+        <input type="text" id="description" class="border p-2 w-full mb-4" placeholder="Enter description">
 
-        <div>
-            <button class="button2" type=submit onclick="resetAll()">Reset</button>
-        </div>
-    </div>
+        <label class="block mb-2">Amount:</label>
+        <input type="number" id="amount" class="border p-2 w-full mb-4" placeholder="Enter amount">
 
-    <h1 class="Income-H1" id="Income-H1">
-        <center>Income Tracker</center>
-        <a class = "font" href="#margin">Home</a>
-        <a class = "font" href="#expense-H1">Expense Section</a>
-    </h1>
-    <div class="Expense-Tracker">
-    <form onsubmit="return event.preventDefault(); onSubmitincome();" autocomplete="off">
-        <div>
-            <label class="validation-error hide1" id="fullNameValidationError1">*This field is
-                required.</label><br><br>
-            <label>Add your Expense*</label>
-            <input type="number" name="incomeamount" id="incomeamount">
-        </div><br>
-        <div>
-            <label>Why you Spend for?*</label>
-            <input type="text" name="description1" id="description1">
-        </div> <br>
+        <label class="block mb-2">Type:</label>
+        <div class="mb-4">
+            <input type="radio" id="income" name="entryType" value="income" checked>
+            <label for="income">Income</label>
+            <input type="radio" id="expense" name="entryType" value="expense" class="ml-4">
+            <label for="expense">Expense</label>
         </div>
-        <br>
-        <div class="form-action-buttons1">
-            <button class="button1" type=submit onclick="onSubmitincome()">Submit</button>
-        </div>
-    </form>
-    <div class="income-table">
-        <table class="list" id="incomelist">
+
+        <button id="add-btn" onclick="addEntry(getSelectedType())" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Add Entry</button>
+
+        <h3 class="text-lg font-bold mt-6">Entries</h3>
+        <table class="w-full mt-4 border-collapse">
             <thead>
-                <tr>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Actions</th>
+                <tr class="bg-gray-200">
+                    <th class="p-2">Description</th>
+                    <th class="p-2">Amount</th>
+                    <th class="p-2">Type</th>
+                    <th class="p-2">Actions</th>
                 </tr>
             </thead>
-            <tbody>
-
-            </tbody>
+            <tbody id="entries"></tbody>
         </table>
-    </div>
-   
-    <h1 class = "expense-H1" id = "expense-H1">
-        <center>Expense Tracker</center>
-        <a class = "font" href="#margin">Home</a>
-        <a class = "font" href="#Income-H1">Income Section</a>
-    </h1>
-    <div class="Expense-Tracker">
-        <form onsubmit="return event.preventDefault(); onSubmit();" autocomplete="off">
-            <div>
-                <label class="validation-error hide" id="fullNameValidationError">*This field is
-                    required.</label><br><br>
-                <label>Add your Expense*</label>
-                <input type="number" name="amount" id="amount">
-            </div><br>
-            <div>
-                <label>Why you Spend for?*</label>
-                <input type="text" name="description" id="description">
-            </div> <br>
-    </div>
-    <br>
-    <div class="form-action-buttons">
-        <button class="button1" type=submit onclick="onSubmit()">Submit</button>
-    </div>
-    </form>
-    <div class="expense-table">
-        <table class="list" id="expenselist">
-            <thead>
-                <tr>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
+        <h3 class="text-lg font-bold mt-6">Summary</h3>
+        <p>Total Income: <span id="totalincome">0.00</span></p>
+        <p>Total Spent: <span id="totalspent">0.00</span></p>
+        <p>Balance: <span id="balance">0.00</span></p>
+
+        <button onclick="resetTracker()" class="bg-red-500 text-white px-4 py-2 rounded mt-4 w-full">Reset</button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function getSelectedType() {
+            return document.querySelector("input[name='entryType']:checked").value;
+        }
+    </script>
 </body>
-
 </html>
-
