@@ -69,6 +69,7 @@ function deleteEntry(index) {
   loadEntries();
 }
 
+
 function updateSummary() {
   let entries = JSON.parse(localStorage.getItem("entries")) || [];
   let totalIncome = entries
@@ -83,6 +84,31 @@ function updateSummary() {
   document.getElementById("totalspent").textContent = totalExpense.toFixed(2);
   document.getElementById("balance").textContent = balance.toFixed(2);
 }
+
+function filterEntries() {
+  let selectedFilter = document.querySelector("input[name='filter']:checked").value;
+  let entries = JSON.parse(localStorage.getItem("entries")) || [];
+  let tbody = document.getElementById("entries");
+  tbody.innerHTML = "";
+
+  let filteredEntries = entries.filter(entry => selectedFilter === "all" || entry.type === selectedFilter);
+
+  filteredEntries.forEach((entry, index) => {
+    let row = `<tr class="border-b">
+                  <td class="p-2">${entry.description}</td>
+                  <td class="p-2">${entry.amount}</td>
+                  <td class="p-2">${entry.type}</td>
+                  <td class="p-2">
+                      <button onclick="editEntry(${index})" class="text-blue-500 mr-2">Edit</button>
+                      <button onclick="deleteEntry(${index})" class="text-red-500">Delete</button>
+                  </td>
+                </tr>`;
+    tbody.innerHTML += row;
+  });
+
+  updateSummary();
+}
+
 
 function filterEntries() {
   let filter = document.querySelector("input[name='filter']:checked").value;
