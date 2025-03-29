@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script defer src="script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 p-5">
     <div class="max-w-lg mx-auto bg-white p-6 rounded shadow-lg">
         <h2 class="text-xl font-bold mb-4">Expense Tracker</h2>
@@ -25,7 +27,21 @@
             <label for="expense">Expense</label>
         </div>
 
-        <button id="add-btn" onclick="addEntry(getSelectedType())" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Add Entry</button>
+        <button id="add-btn" onclick="addEntry(getSelectedType())"
+            class="bg-blue-500 text-white px-4 py-2 rounded w-full">Add Entry</button>
+
+        <h3 class="text-lg font-bold mt-6">Filter Entries</h3>
+        <div class="flex space-x-4 mb-4">
+            <input type="radio" id="filter-all" name="filter" value="all" checked onclick="filterEntries()">
+            <label for="filter-all">All</label>
+
+            <input type="radio" id="filter-income" name="filter" value="income" onclick="filterEntries()">
+            <label for="filter-income">Income</label>
+
+            <input type="radio" id="filter-expense" name="filter" value="expense" onclick="filterEntries()">
+            <label for="filter-expense">Expense</label>
+        </div>
+
 
         <h3 class="text-lg font-bold mt-6">Entries</h3>
         <table class="w-full mt-4 border-collapse">
@@ -54,4 +70,5 @@
         }
     </script>
 </body>
+
 </html>
